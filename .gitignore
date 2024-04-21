@@ -5,11 +5,11 @@
 .DS_Store
 
 ## generated lexer and parser
-src/parser/ovid.grm.sml
-src/parser/ovid.lex.sml
+src/parser/mml.grm.sml
+src/parser/mml.lex.sml
 
 ## heap image
-bin/ovc.amd64-linux
-bin/ovc.amd64-darwin
-bin/ovc.x86-win32
+bin/mlc.amd64-linux
+bin/mlc.amd64-darwin
+bin/mlc.x86-win32
 
