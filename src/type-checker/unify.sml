@@ -71,4 +71,11 @@ structure Unify : sig
 	    else (adjustDepth(ty, d); MV.instantiate(mv, ty); true)
       | unifyWithMV _ = raise Fail "impossible"
 
+(*DEBUG*)
+val unify = fn (ty1, ty2) => (unify(ty1, ty2)
+handle ex => (
+print(concat["UNIFY(", TypeUtil.toString ty1, ",", TypeUtil.toString ty2, ")\n"]);
+raise ex))
+(*DEBUG*)
+
   end

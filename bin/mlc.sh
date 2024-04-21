@@ -12,7 +12,7 @@ BINDIR=${MLC%mlc.sh}
 
 HEAP_SUFFIX=$(sml @SMLsuffix)
 
-HEAP="$BINDIR/ovc.$HEAP_SUFFIX"
+HEAP="$BINDIR/mlc.$HEAP_SUFFIX"
 
 if test ! -r "$HEAP" ; then
   echo "$MLC: no heap image; run make in src directrory to build compiler"

@@ -48,7 +48,7 @@ structure BindBasis =
 
     (* unary operators *)
     val opDEREF = newVar OpNames.derefId
-    val opNEG = newVar OpNames.minusId
+    val opNEG = newVar OpNames.negId
 
     (* variables *)
     val varArguments = newVar (Atom.atom "arguments")

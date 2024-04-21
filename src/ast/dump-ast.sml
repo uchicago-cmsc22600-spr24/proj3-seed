@@ -267,7 +267,7 @@ structure DumpAST : sig
           mkCaseRule [pat2sexp env p, exp2sexp env e]
 
     and pat2sexp (env : env) p = (case p
-           of T.ConPat(dc, ps) => mkConPat [dc2sexp env dc, pat2sexp env p]
+           of T.ConPat(dc, ps) => mkConPat (dc2sexp env dc :: List.map (pat2sexp env) ps)
             | T.TuplePat xs => mkTuplePat (List.map (pat2sexp env) xs)
             | T.VarPat x => mkVarPat [var2sexp env x]
           (* end case *))
