@@ -196,6 +196,7 @@ structure Context : sig
                   ],
                 varEnv = List.foldl insVar AMap.empty [
                     (* binary operators *)
+                    B.opASSIGN,
                     B.opEQL,
                     B.opNEQ,
                     B.opLTE,
