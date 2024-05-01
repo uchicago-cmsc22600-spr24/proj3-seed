@@ -42,7 +42,7 @@ structure Coverage : sig
       | Missing of DC.t list    (* constructors that have not been covered yet *)
       | ErrorArg                (* ErrorTy for argument *)
 
-    fun init ty = (case ty
+    fun init ty = (case Ty.prune ty
            of Ty.ConTy(Ty.UserTyc{cons, ...}, _) => Missing(!cons)
             | Ty.ErrorTy => ErrorArg
             | _ => NonDataCon
