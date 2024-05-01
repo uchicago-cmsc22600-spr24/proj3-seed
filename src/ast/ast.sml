@@ -36,7 +36,9 @@ structure AST =
     and exp_rep
       = IfExp of exp * exp * exp                (* conditional *)
       | AppExp of exp * exp                     (* value application *)
-      | TupleExp of exp list                    (* tuple expression; list has 2+ elements *)
+      | TupleExp of exp list                    (* tuple expression; list has 0 or
+                                                 * 2+ elements
+                                                 *)
       | CaseExp of exp * rule list              (* case expression *)
       | BindExp of bind * exp                   (* local scope *)
       | VarExp of valid                         (* value variable *)
@@ -51,7 +53,9 @@ structure AST =
 
     and pat
       = ConPat of conid * pat list              (* data constructor pattern *)
-      | TuplePat of pat list                    (* tuple pattern; list has 2+ elements *)
+      | TuplePat of pat list                    (* tuple pattern; list has 0 or
+                                                 * 2+ elements
+                                                 *)
       | VarPat of valid                         (* variable binding pattern *)
 
   end

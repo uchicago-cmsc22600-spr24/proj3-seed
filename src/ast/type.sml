@@ -106,8 +106,10 @@ structure Type : sig
 
     fun funTy (ty1, ty2) = ConTy(FunTyc, [ty1, ty2])
 
-    fun asFunTy (ConTy(FunTyc, [ty1, ty2])) = SOME(ty1, ty2)
-      | asFunTy _ = NONE
+    fun asFunTy ty = (case prune ty
+           of ConTy(FunTyc, [ty1, ty2]) => SOME(ty1, ty2)
+            | _ => NONE
+          (* end case *))
 
     fun tupleTy [] = ConTy(unitTyc, [])
       | tupleTy [ty] = ty

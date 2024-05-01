@@ -143,10 +143,12 @@ structure DumpAST : sig
           and doDCon (dc as Ty.DCon{argTys, ...}) = (
                 assignConId dc;
                 List.app doTy argTys)
-          and doTy (Ty.VarTy tv) = ()
-            | doTy (Ty.MetaTy mv) = assignMVId mv
-            | doTy (Ty.ConTy(_, tys)) = List.app doTy tys
-            | doTy Ty.ErrorTy = ()
+          and doTy ty = (case Ty.prune ty
+                 of Ty.VarTy tv => ()
+                  | Ty.MetaTy mv => assignMVId mv
+                  | Ty.ConTy(_, tys) => List.app doTy tys
+                  | Ty.ErrorTy => ()
+                (* end case *))
           and doExp (T.E(e, ty)) = (
                 doTy ty;
                 case e
@@ -234,7 +236,7 @@ structure DumpAST : sig
             STRING "FORALL", list (tv2sexp env) tvs, ty2sexp env ty
           ]
 
-    and ty2sexp (env : env) ty = (case Type.prune ty
+    and ty2sexp (env : env) ty = (case Ty.prune ty
            of Ty.VarTy tv => mkVarTy [tv2sexp env tv]
             | Ty.MetaTy mv => mkMetaTy [#idOfMV env mv]
             | Ty.ConTy(tyc, tys) => mkConTy [tyc2sexp env tyc, list (ty2sexp env) tys]
